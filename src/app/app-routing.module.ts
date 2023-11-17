@@ -6,7 +6,7 @@ import { CanActivateGuard } from './can-activate.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent, canActivate: [CanActivateGuard] }
 ];
 
 @NgModule({
