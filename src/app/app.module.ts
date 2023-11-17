@@ -19,6 +19,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthFirebaseuiAvatarComponent } from "./auth-firebaseui-avatar/auth-firebaseui-avatar.component";
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { CreatorProfileComponent } from './creator-profile/creator-profile.component';
+import { LocationAutocompleteComponent } from './location-autocomplete/location-autocomplete.component';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -42,7 +44,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { LocationAutocompleteComponent } from './location-autocomplete/location-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LocationAutocompleteComponent } from './location-autocomplete/location-
     LoginComponent,
     HomeComponent,
     LocationAutocompleteComponent,
+    CreatorProfileComponent,
   ],
   imports: [
     BrowserModule,
