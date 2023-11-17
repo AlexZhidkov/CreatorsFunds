@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Auth, AuthProvider, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, User, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@angular/fire/auth';
 import { Firestore, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { MatIconRegistry } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Analytics, logEvent, setUserId } from '@angular/fire/analytics';
 
@@ -25,16 +23,11 @@ export class LoginComponent {
   public isResetPassword: boolean = false;
 
   constructor(
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {
-    this.iconRegistry
-      .addSvgIcon('google', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/mdi/google.svg'))
-      .addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/mdi/facebook.svg'))
-      .addSvgIcon('microsoft', this.sanitizer.bypassSecurityTrustResourceUrl('/assets/mdi/microsoft.svg'));
+    this.loginWithProvider('google');
   }
 
   loginWithProvider(providerName: 'google' | 'facebook' | 'microsoft'): void {
