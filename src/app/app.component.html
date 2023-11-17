@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [routerLink]="['/']" data-cy="homeBtn">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>Creators Funds</span>
+  <div class="spacer"></div>
+  <button mat-button *ngIf="showSignInButton" [routerLink]="['/login']" data-cy="signInBtn">Sign In</button>
+  <auth-firebaseui-avatar [links]="avatarLinks" [canViewAccount]=false (onSignOut)="onSignOut()">
+  </auth-firebaseui-avatar>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

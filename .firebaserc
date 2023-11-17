@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "creatorsfunds": {
+      "hosting": {
+        "CreatorsFunds": [
+          "creatorsfunds"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "creatorsfunds"
+  }
+}

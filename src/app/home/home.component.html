@@ -1,0 +1,16 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title data-cy="eventCardTitle">
+            Users
+        </mat-card-title>
+    </mat-card-header>
+    <mat-list>
+        <mat-list-item *ngFor="let user of users">
+            <img matListItemAvatar [src]="user.photoURL" referrerpolicy="no-referrer" [alt]="user.displayName"
+                [routerLink]="['/profile', user.uid]">
+            <h3 matListItemTitle>{{user.displayName}}</h3>
+            <p matListItemLine>{{user.email}}</p>
+        </mat-list-item>
+    </mat-list>
+</mat-card>
