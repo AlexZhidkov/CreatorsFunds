@@ -33,6 +33,15 @@
                 </a>
             </mat-form-field>
             <mat-form-field class="full-width">
+                <mat-label>Channel ID</mat-label>
+                <input matInput name="channelId" [ngModel]="user.channelId"
+                    (ngModelChange)="updateUser({channelId: $event })">
+                <a matSuffix mat-icon-button aria-label="Channel Id" href="https://www.youtube.com/account_advanced"
+                    target="_blank">
+                    <mat-icon>help</mat-icon>
+                </a>
+            </mat-form-field>
+            <mat-form-field class="full-width">
                 <mat-label>About</mat-label>
                 <textarea matInput name="eventDescription" [ngModel]="user.about"
                     (ngModelChange)="updateUser({about: $event })"></textarea>
@@ -46,4 +55,5 @@
             <p>About: {{user.about}}</p>
         </div>
     </mat-card-content>
+    <pre>{{youTubeData | json}}</pre>
 </mat-card>

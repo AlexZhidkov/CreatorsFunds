@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { DocumentData, DocumentReference, Firestore, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { ActivatedRoute } from '@angular/router';
+import { YouTubeDataService } from '../youtube-data.service';
 
 @Component({
   selector: 'app-creator-profile',
@@ -17,12 +18,14 @@ export class CreatorProfileComponent {
   user: any;
   userId: string;
   isEdit: boolean = false;
+  youTubeData: any
   profileImageUrl: string | undefined = undefined;
   isLoading: boolean = true;
   isImageLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
+    private youTubeDataService: YouTubeDataService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -37,6 +40,10 @@ export class CreatorProfileComponent {
     this.user = (await getDoc(this.userRef)).data();
     this.profileImageUrl = this.user.isProfileImageInStorage ?
       await getDownloadURL(ref(this.storage, `profile-images/${this.user?.uid}-240`)) : this.user.photoURL;
+    this.youTubeDataService.getChannelInfo(this.user.channelId).subscribe((data) => {
+      this.youTubeData = data;
+    });
+
     this.isLoading = false;
   }
 
