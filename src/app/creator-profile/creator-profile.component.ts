@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { DocumentData, DocumentReference, Firestore, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadString, getDownloadURL } from '@angular/fire/storage';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-creator-profile',
@@ -14,13 +15,25 @@ export class CreatorProfileComponent {
   private storage: Storage = inject(Storage);
   userRef: DocumentReference<DocumentData> | undefined = undefined;
   user: any;
+  userId: string;
+  isEdit: boolean = false;
   profileImageUrl: string | undefined = undefined;
   isLoading: boolean = true;
   isImageLoading: boolean = false;
 
+  constructor(
+    private route: ActivatedRoute,
+  ) { }
+
   async ngOnInit(): Promise<void> {
-    const authUser = await this.auth.currentUser;
-    this.userRef = doc(this.firestore, `users/${authUser?.uid}`);
+    const userId = this.route.snapshot.paramMap.get('userId');
+    if (!userId) {
+      console.error('User ID is falsy');
+      return;
+    }
+    this.userId = userId;
+    this.isEdit = (this.userId === (await this.auth.currentUser)?.uid);
+    this.userRef = doc(this.firestore, `users/${this.userId}`);
     this.user = (await getDoc(this.userRef)).data();
     this.profileImageUrl = this.user.isProfileImageInStorage ?
       await getDownloadURL(ref(this.storage, `profile-images/${this.user?.uid}-240`)) : this.user.photoURL;
