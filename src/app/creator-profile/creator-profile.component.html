@@ -55,5 +55,28 @@
             <p>About: {{user.about}}</p>
         </div>
     </mat-card-content>
-    <pre>{{youTubeData | json}}</pre>
 </mat-card>
+
+<section *ngIf="youTubeData">
+    <h2>Channels</h2>
+    <mat-card *ngFor="let item of youTubeData.items">
+        <mat-card-header>
+            <mat-card-title>{{item.snippet.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <img mat-card-xl-image [src]="item.snippet.thumbnails.medium.url" alt="Channel thumbnail">
+            <p>{{item.snippet.description}}</p>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Advanced Information
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <pre>{{youTubeData | json}}</pre>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
