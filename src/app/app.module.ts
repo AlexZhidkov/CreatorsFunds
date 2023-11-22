@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreatorProfileComponent } from './creator-profile/creator-profile.component';
 import { LocationAutocompleteComponent } from './location-autocomplete/location-autocomplete.component';
+import { Oauth2CallbackComponent } from './oauth2-callback/oauth2-callback.component';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -54,6 +55,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     HomeComponent,
     LocationAutocompleteComponent,
     CreatorProfileComponent,
+    Oauth2CallbackComponent,
   ],
   imports: [
     BrowserModule,

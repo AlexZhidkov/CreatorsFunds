@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title data-cy="metricsCardTitle">
+            Metrics
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-button data-cy="tryBtn" (click)="trySampleRequest()">GET METRICS</button>
+    </mat-card-actions>
+</mat-card>
+<pre>{{response | json}}</pre>
